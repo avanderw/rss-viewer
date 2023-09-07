@@ -60,7 +60,7 @@
 	<h1>{json.feed.title}</h1>
 	<ul>
 		{#each json.items as item}
-			<li>
+			<li class:selected={selected && selected.title == item.title}>
 				<div>
 					<i>{pubDateToFriendly(item.pubDate)}</i>
 					<button on:click={() => select(item)}>{item.title}</button>
@@ -70,7 +70,7 @@
 					{/each}
 				</div>
 				{#if selected && selected.title == item.title}
-					<div>
+					<div class=description>
 						{@html item.description}
 					</div>
 				{/if}
@@ -88,28 +88,70 @@
 {/if}
 
 <style>
+	:root {
+		--primary: #606C38;
+		--secondary: #DDA15E;
+		--accent: #FEFAE0;
+	}
+	:global(body) {
+		width:50%;
+		margin: 0 auto;
+	}
+	h1 {
+		/** Style to look like a title bar */
+		color: var(--accent);
+		background-color: var(--primary);
+		border-radius: 5px;
+		padding: 0.2em 1em;
+		margin: 0.2em 0;
+		font-size: 1em;
+	}
+	i {
+		/** Styled to look like a subtitle */
+		color: var(--primary);
+		font-size: 0.75em;
+		font-style: italic;
+	}
 	button {
 		/** Styled to look like a heading */
 		background-color: transparent;
 		border: none;
-		font-size: 1.2em;
+		font-size: .75em;
 		font-weight: bold;
 		cursor: pointer;
+		text-align: left;
+	}
+	ul {
+		/** Styled to look like a list */
+		padding: 0;
 	}
 	li {
 		/** Styled to look like a link */
 		list-style-type: none;
-		margin: 10px 0;
-		padding: 10px;
+		margin: 0.2em 0;
+		padding: 0.2em;
 		border: 1px solid #eee;
 		border-radius: 5px;
 	}
 	span {
 		/** Styled to look like a tag */
-		background-color: #eee;
+		color: var(--accent);
+		background-color: var(--secondary);
 		border-radius: 5px;
 		padding: 2px 5px;
 		margin: 0 5px;
 		float: right;
+	}
+	.description {
+		margin: 0.5em 0;
+	}
+	.selected {
+		background-color: var(--accent);
+	}
+	:global(a) {
+		color: var(--primary);
+	}
+	:global(a:visited) {
+		color: var(--secondary);
 	}
 </style>
