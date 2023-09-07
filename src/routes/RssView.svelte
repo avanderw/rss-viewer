@@ -93,10 +93,6 @@
 		--secondary: #DDA15E;
 		--accent: #FEFAE0;
 	}
-	:global(body) {
-		width:50%;
-		margin: 0 auto;
-	}
 	h1 {
 		/** Style to look like a title bar */
 		color: var(--accent);
