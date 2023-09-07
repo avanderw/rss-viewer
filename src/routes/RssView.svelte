@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { base } from '$app/paths';
 	import { browser } from '$app/environment';
 	import { ExternalLinkIcon } from 'svelte-feather-icons';
 
@@ -80,8 +81,8 @@
 	<p>Loading...</p>
 {:else}
 	<p>
-		Enter a RSS feed URL as a query parameter, e.g. <a href="/?rss=https://www.reddit.com/.rss"
-			>/?rss=https://www.reddit.com/.rss</a
+		Enter a RSS feed URL as a query parameter, e.g. <a href="{base}/?rss=https://www.reddit.com/.rss"
+			>{base}/?rss=https://www.reddit.com/.rss</a
 		>
 	</p>
 {/if}
