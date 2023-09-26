@@ -7,6 +7,19 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
+	interface RssFeed {
+		title: string;
+		link: string;
+		description: string;
+	}
+	interface RssItem {
+		author: string;
+		title: string;
+		link: string;
+		pubDate: string;
+		description: string;
+		categories: string[];
+	}
 }
 
-export {};
+export { };
