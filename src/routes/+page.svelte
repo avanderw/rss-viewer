@@ -42,9 +42,49 @@
 	{:else}
 		<List items={json.items} on:select={select} />
 	{/if}
+{:else}
+	<h1>No RSS feed configured</h1>
+	<h2>
+		Below are some examples:
+		<table>
+			<tr>
+				<td>reddit (front page)</td>
+				<td
+					><a href="?rss=https://www.reddit.com/.rss" target="_self"
+						>?rss=https://www.reddit.com/.rss</a
+					></td
+				>
+			</tr>
+			<tr>
+				<td>reddit (subreddit)</td>
+				<td
+					><a href="?rss=https://www.reddit.com/r/news/.rss" target="_self"
+						>?rss=https://www.reddit.com/r/news/.rss</a
+					></td
+				>
+			</tr>
+			<tr>
+				<td>reddit (user)</td><td
+					><a href="?rss=https://www.reddit.com/user/alienth/.rss" target="_self"
+						>?rss=https://www.reddit.com/user/alienth/.rss</a
+					></td
+				>
+			</tr>
+			<tr>
+				<td>reddit (multi-reddit)</td><td
+					><a href="?rss=https%3A%2F%2Fwww.reddit.com%2Fr%2Fnews%2Bwtf.rss" target="_self"
+						>?rss=https://www.reddit.com/r/news+wtf.rss</a
+					></td
+				>
+			</tr>
+		</table>
+	</h2>
 {/if}
 
 <style>
+	:global(body) {
+		overflow-x: hidden;
+	}
 	h1 {
 		color: var(--primary-color-light);
 		font-weight: 500;
@@ -56,5 +96,11 @@
 		font-weight: 400;
 		font-size: 1em;
 		text-align: center;
+	}
+	table {
+		margin: 10px auto;
+	}
+	td {
+		text-align: left;
 	}
 </style>
