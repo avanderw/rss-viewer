@@ -9,31 +9,22 @@
 </script>
 
 {#each items as item}
-	<div>
-		<a href={item.link} target="_blank" rel="noopener noreferrer">
+	<button on:click={() => dispatch('select', item)}>
+		<a href={item.link} target="_blank" rel="noopener noreferrer" on:click={(e)=>{e.stopPropagation()}}>
 			<svg>
 				<use href="{base}/feather-sprite.svg#link" />
 			</svg></a
 		>
 		<span style="font-weight: 500; margin-left: 0.5rem">{item.author}</span>
 		<span style="color: var(--black-color-light)">• {pubDateToFriendly(item.pubDate)}</span>
-		<button
-			on:click={() => {
-				dispatch('select', item);
-			}}>{@html item.title}</button
-		>
+		<span class="title">{@html item.title}</span>
 		{#each item.categories as cat}
 			<span class="category">{cat}</span>
 		{/each}
-	</div>
+		</button>
 {/each}
 
 <style>
-	div {
-		background-color: var(--white-color);
-		padding: 0.5rem;
-		border-bottom: 2px dotted var(--primary-color);
-	}
 	svg {
 		width: 1.4rem;
 		height: 1.4rem;
@@ -43,10 +34,20 @@
 		stroke-linejoin: round;
 		fill: none;
 	}
-    a:visited svg {
-        stroke: var(--secondary-color);
-    }
+	a:visited svg {
+		stroke: var(--secondary-color);
+	}
 	button {
+		display: block;
+		width: 100%;
+		text-align: left;
+		padding: 0.5rem;
+		border: none;
+		background-color: var(--white-color);
+		border-bottom: 2px dotted var(--primary-color);
+		font-weight: 500;
+	}
+	.title {
 		display: block;
 		width: 100%;
 		text-align: left;
@@ -57,7 +58,7 @@
 		font-weight: 500;
 	}
 	.category {
-        display: inline-block;
+		display: inline-block;
 		background-color: var(--primary-color);
 		color: var(--white-color);
 		padding: 0.2rem 0.4rem;
