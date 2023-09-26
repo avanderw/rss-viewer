@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let item: RssItem;
 
+	import { base } from '$app/paths';
 	import { createEventDispatcher } from 'svelte';
 	import { pubDateToFriendly } from '$lib/date-ops';
 
@@ -10,14 +11,14 @@
 <article>
 	<a href={item.link} target="_blank" rel="noopener noreferrer" >
 		<svg>
-			<use href="/feather-sprite.svg#link" />
+			<use href="{base}/feather-sprite.svg#link" />
 		</svg></a
 	>
 	<span style="font-weight: 500; margin-left: 0.5rem">{item.author}</span>
 	<span style="color: var(--black-color-light)">• {pubDateToFriendly(item.pubDate)}</span>
 	<button on:click={() => dispatch('deselect')}>
 		<svg>
-			<use href="/feather-sprite.svg#x-circle" />
+			<use href="{base}/feather-sprite.svg#x-circle" />
 		</svg>
 	</button>
 	<h2>{@html item.title}</h2>
