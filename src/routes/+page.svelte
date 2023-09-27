@@ -31,12 +31,15 @@
 	let item: RssItem | undefined;
 	function select(event: CustomEvent<RssItem>) {
 		item = event.detail;
+		window.scrollTo(0, 0);
 	}
 </script>
 
 {#if json}
-	<h1>{json.feed.title}</h1>
-	<h2>{json.feed.description}</h2>
+	<div class="header">
+		<h1>{json.feed.title}</h1>
+		<h2>{json.feed.description}</h2>
+	</div>
 	{#if item}
 		<Item {item} on:deselect={() => (item = undefined)} />
 	{:else}
@@ -102,5 +105,12 @@
 	}
 	td {
 		text-align: left;
+	}
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: 999;
+		background-color: var(--primary-color-dark);
+		padding: 1em;
 	}
 </style>
